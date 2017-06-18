@@ -17,9 +17,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
     QHash<QString,QDockWidget *> hashDockWidget;
-    QDockWidget *CalssDockWidget;
-    //QDockWidget *TableItem_DockWidget;
+    QDockWidget *ClassDockWidget;
+    QDockWidget *AttribDockWidget;
 };
 
 #endif // MAINWINDOW_H

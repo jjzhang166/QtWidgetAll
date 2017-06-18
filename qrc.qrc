@@ -3,4 +3,7 @@
         <file>icon/new_page.png</file>
         <file>icon/folder.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>icon/011.png</file>
+    </qresource>
 </RCC>
