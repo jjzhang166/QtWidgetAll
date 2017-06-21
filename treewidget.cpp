@@ -3,6 +3,7 @@
 TreeWidget::TreeWidget(QWidget *parent)
     :QTreeWidget(parent)
 {
+    this->header()->setStretchLastSection(true);
     this->setFont(QFont("arial",10,QFont::Black));  //设置字体
     this->setStyleSheet("QTreeWidget{border:0px;margin-left:-20px;margin-bottom:-10px;}"
                         "QTreeView::branch {image:none;background:#F3F3F3;}"

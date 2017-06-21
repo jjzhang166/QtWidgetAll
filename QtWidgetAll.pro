@@ -26,13 +26,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     tablewidget.cpp \
-    treewidget.cpp
+    treewidget.cpp \
+    treemodel.cpp \
+    treeview.cpp \
+    tableview.cpp \
+    ftpseting.cpp
 
 HEADERS  += mainwindow.h \
     tablewidget.h \
-    treewidget.h
+    treewidget.h \
+    treemodel.h \
+    treeview.h \
+    tableview.h \
+    ftpseting.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    ftpseting.ui
 
 RESOURCES += \
     qrc.qrc

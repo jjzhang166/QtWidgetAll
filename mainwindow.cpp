@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //加载窗口类的创建
+    ftpseting=new FtpSeting(this);
     QStringList TabsName;
     TabsName<<"sample"<<"code"<<"description";
     ui->mainToolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);       //设置工具栏显示文字和图标
@@ -20,13 +22,16 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowTitle(tr("QT 3k QWidget"));
     this->setDockNestingEnabled(true);  //使DockWidget窗可以放在mainWindow的中间
 
+    //初始化的一些函数
+    setConnect();
+
     //类的实例
     TableWidget *tableWidget=new TableWidget(5,8);
     TreeWidget *treeWidget=new TreeWidget;
     //dockWidget实例
-    ClassDockWidget=new QDockWidget;        //左边类窗口
-    ClassDockWidget->setFixedSize(250,600);
-    AttribDockWidget=new QDockWidget;       //右边属性窗口
+    classDockWidget=new ClassDockWidget;;        //左边类窗口
+    //classDockWidget->setFixedSize(250,600);
+    attribDockWidget=new AttribDockWidget;       //右边属性窗口
 
     QDockWidget *bottomDockWidget=new QDockWidget;
     bottomDockWidget->setWindowTitle("TopBottomDock");
@@ -51,18 +56,18 @@ MainWindow::MainWindow(QWidget *parent) :
     QTextEdit *textEdit=new QTextEdit;
     hashDockWidget.value(TabsName.at(1))->setWidget(textEdit);
 
-    ClassDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
-    ClassDockWidget->setWindowTitle(tr("ClassWindow"));
-    ClassDockWidget->setWidget(treeWidget);
-    ClassDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
+    classDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
+    classDockWidget->setWindowTitle(tr("ClassWindow"));
+    classDockWidget->setWidget(treeWidget);
+    classDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
 
-    AttribDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
-    AttribDockWidget->setWindowTitle("AttribWindow");
-    AttribDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
+    attribDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
+    attribDockWidget->setWindowTitle("AttribWindow");
+    attribDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
 
-    this->addDockWidget(Qt::LeftDockWidgetArea,ClassDockWidget);
-    this->splitDockWidget(ClassDockWidget,hashDockWidget.value(TabsName.at(0)), Qt::Horizontal);
-    this->splitDockWidget(hashDockWidget.value(TabsName.at(0)),AttribDockWidget, Qt::Horizontal);   //从左到右分割dockWidget窗口
+    this->addDockWidget(Qt::LeftDockWidgetArea,classDockWidget);
+    this->splitDockWidget(classDockWidget,hashDockWidget.value(TabsName.at(0)), Qt::Horizontal);
+    this->splitDockWidget(hashDockWidget.value(TabsName.at(0)),attribDockWidget, Qt::Horizontal);   //从左到右分割dockWidget窗口
     for(int i=0;i<dockWidgetCout;++i)
     {
         if(i!=0)
@@ -76,4 +81,9 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::setConnect()
+{
+    connect(ui->actionFtpSeting,SIGNAL(triggered()),ftpseting,SLOT(exec()));
 }
