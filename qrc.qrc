@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icon/houdini_icon.png</file>
+        <file>icon/folder.png</file>
+        <file>icon/maya_2017.png</file>
+        <file>icon/new_page.png</file>
+        <file>icon/sort33.png</file>
+        <file>icon/sort37.png</file>
+        <file>theme/theme1.qss</file>
+        <file>theme/theme2.qss</file>
+        <file>theme/default.qss</file>
+        <file>theme/theme3.qss</file>
+        <file>theme/theme4.qss</file>
+    </qresource>
+</RCC>
