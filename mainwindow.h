@@ -35,6 +35,7 @@ private:
     QHash<QString,QDockWidget *> hashDockWidget;
     ClassDockWidget *classDockWidget;
     QDockWidget *attribDockWidget;
+    QDockWidget *detailDockWidget;
     ItemDockWidget *itemDockWidget[3];
 
     FtpSeting *ftpseting;

@@ -17,6 +17,7 @@ TabWidget::TabWidget(QWidget *parent)
     QLineEdit *lineEdit = new QLineEdit();
     QPushButton *pushButton = new QPushButton("Test");
     QVBoxLayout *vLayout = new QVBoxLayout();
+    vLayout->setSpacing(0);
     vLayout->addWidget(lineEdit);
     vLayout->addWidget(pushButton);
     frameLayout->setFrameLayout(vLayout);

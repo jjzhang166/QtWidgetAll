@@ -43,10 +43,10 @@ MainWindow::MainWindow(QWidget *parent) :
     createMainTools();
     createLogin();
 
-    QDockWidget *bottomDockWidget=new QDockWidget;
-    bottomDockWidget->setWindowTitle("TopBottomDock");
-    bottomDockWidget->setAllowedAreas(Qt::TopDockWidgetArea|Qt::BottomDockWidgetArea);
-    //this->addDockWidget(Qt::BottomDockWidgetArea,bottomDockWidget);
+    QDockWidget *detailDockWidget=new QDockWidget;
+    detailDockWidget->setWindowTitle("Details");
+    detailDockWidget->setAllowedAreas(Qt::TopDockWidgetArea|Qt::BottomDockWidgetArea);
+    //this->addDockWidget(Qt::BottomDockWidgetArea,detailDockWidget);
 
     const int dockWidgetCout=3;
     //ItemDockWidget *ItemDockWidget[dockWidgetCout];
@@ -78,12 +78,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->addDockWidget(Qt::LeftDockWidgetArea,classDockWidget);
     this->splitDockWidget(classDockWidget,hashDockWidget.value(TabsName.at(0)), Qt::Horizontal);
+    this->splitDockWidget(classDockWidget,detailDockWidget,Qt::Vertical);
     this->splitDockWidget(hashDockWidget.value(TabsName.at(0)),attribDockWidget, Qt::Horizontal);   //从左到右分割dockWidget窗口
-    for(int i=0;i<dockWidgetCout;++i)
-    {
-        if(i!=0)
-           this->tabifyDockWidget(itemDockWidget[i-1],itemDockWidget[i]);       //tabs标签方式摆放dockwidget窗口
-    }
+    this->splitDockWidget(hashDockWidget.value(TabsName.at(0)),hashDockWidget.value(TabsName.at(1)),Qt::Vertical);
+    this->tabifyDockWidget(itemDockWidget[1],itemDockWidget[2]);       //tabs标签方式摆放dockwidget窗口
+    itemDockWidget[1]->raise();         //提升dockwidget为顶部窗口槽
     this->setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::North);        //第一个参数表示那里的dockwidgetArea窗口？第二个参数表示在那绘制
 
     connect(ui->actionExit,SIGNAL(triggered()),this,SLOT(close()));

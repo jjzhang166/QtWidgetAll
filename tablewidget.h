@@ -4,7 +4,8 @@
 #include <QList>
 #include <QFileInfo>
 #include <QItemDelegate>
-class ProgressBarDelegate : public QItemDelegate
+#include <QStyledItemDelegate>
+class ProgressBarDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 public:

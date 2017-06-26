@@ -9,9 +9,11 @@
 #include <QPainter>
 #include <QDateTime>
 #include <QCheckBox>
+#include <QLabel>
+#include <QPixmap>
 //=====================Delegate(委托)==================
 ProgressBarDelegate::ProgressBarDelegate(QObject *parent)
-    : QItemDelegate(parent)
+    : QStyledItemDelegate(parent)
 {
     progressBarOption=new QStyleOptionProgressBar;
 }
@@ -44,7 +46,7 @@ void ProgressBarDelegate::paint(QPainter* painter, const QStyleOptionViewItem& o
         progressBarOption->text = QString("%1%").arg(progressBarOption->progress);
         QApplication:: style()->drawControl(QStyle::CE_ProgressBar, progressBarOption, painter);
     } else {
-        return QItemDelegate::paint (painter, option, index);
+        return QStyledItemDelegate::paint (painter, option, index);
     }
 }
 //=============================TableWidget=======================
@@ -167,6 +169,10 @@ void TableWidget::initData()
                 this->setItem(row,column,new QTableWidgetItem("280 MB"));
             }else if(column==4){
                 this->setItem(row,column,new QTableWidgetItem("68"));
+            }else if(column==8){
+                QLabel *label=new QLabel;
+                label->setPixmap(QPixmap(":/icon/folder.png"));
+                this->setCellWidget(row,column,label);
             }else if(column==6){
                 QComboBox *comboBox=new QComboBox;
                 comboBox->addItem(mayaIcon,"maya");
