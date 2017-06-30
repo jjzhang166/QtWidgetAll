@@ -13,5 +13,5 @@ ToolBox::ToolBox(QWidget *parent)
     this->setObjectName("ToolBox");
     this->addItem(treeView,tr("Qt"));
     this->addItem(treeWidget,tr("C++"));
-    this->addItem(widget,tr("Qt Date Class"));   
+    this->addItem(widget,tr("Qt Date Class"));
 }

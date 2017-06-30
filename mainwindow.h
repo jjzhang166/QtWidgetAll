@@ -7,12 +7,15 @@
 #include <QComboBox>
 #include "ftpseting.h"
 #include "Login.h"
+#include "tcpserverdialog.h"
+#include "tcpsocketdialog.h"
+
 namespace Ui {
 class MainWindow;
 }
 
 class ItemDockWidget;
-class AttribDockWidget;
+class ClassDockWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -34,29 +37,20 @@ private:
 
     QHash<QString,QDockWidget *> hashDockWidget;
     QDockWidget *classDockWidget;
-    AttribDockWidget *attribDockWidget;
+    QDockWidget *attribDockWidget;
     QDockWidget *detailDockWidget;
-    ItemDockWidget *itemDockWidget[3];
+    QDockWidget *codeDockWidget;
 
     FtpSeting *ftpseting;
+    TcpServerDialog *tcpServerDialog;
+    TcpSocketDialog *tcpSocketDialog;
 };
 class ItemDockWidget : public QDockWidget
 {
 public:
     virtual QSize sizeHint() const
     {
-        return QSize(500,600);
+        return QSize(450,600);
     }
 };
-//重载QDockwidget类设置初始化大小
-class AttribDockWidget : public QDockWidget
-{
-public:
-    virtual QSize sizeHint() const
-    {
-        return QSize(200,600);
-
-    }
-};
-
 #endif // MAINWINDOW_H

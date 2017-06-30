@@ -11,7 +11,7 @@
 #include "toolbox.h"
 #include "tabwidget.h"
 #include "qftp.h"
-#include "Login.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //加载窗口类的创建
     ftpseting=new FtpSeting(this);
     QStringList TabsName;
-    TabsName<<"sample"<<"code"<<"description";
+    TabsName<<"TableWidget"<<"TableView"<<"sample3"<<"sample4"<<"sample5"<<"sample6";
     ui->mainToolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);       //设置工具栏显示文字和图标
     //删除主窗口中的所有窗口，全部使用DockWidget类
     QWidget* p=this->takeCentralWidget();
@@ -33,64 +33,74 @@ MainWindow::MainWindow(QWidget *parent) :
     //类的实例
     QFtp *ftp=new QFtp;
     m_login=new Login;
+    tcpServerDialog=new TcpServerDialog(this);
+    tcpSocketDialog=new TcpSocketDialog(this);
     TabWidget *tabWidget=new TabWidget;
     ToolBox *toolBox=new ToolBox;
     TableWidget *tableWidget=new TableWidget(50,8);
-    //dockWidget实例
-    classDockWidget=new QDockWidget;;        //左边类窗口
-    //classDockWidget->setFixedSize(220,600);
-    attribDockWidget=new AttribDockWidget;       //右边属性窗口
 
     //初始化的一些函数
     setConnect();
     createMainTools();
     createLogin();
 
-    QDockWidget *detailDockWidget=new QDockWidget;
-    detailDockWidget->setWindowTitle("Details");
-    detailDockWidget->setAllowedAreas(Qt::TopDockWidgetArea|Qt::BottomDockWidgetArea);
-    //this->addDockWidget(Qt::BottomDockWidgetArea,detailDockWidget);
+    //dockWidget实例
 
-    const int dockWidgetCout=3;
-    //ItemDockWidget *ItemDockWidget[dockWidgetCout];
+    classDockWidget=new QDockWidget(this);        //左边类窗口
+    detailDockWidget=new QDockWidget(this);
+    //classDockWidget->setFixedSize(220,600);
+    attribDockWidget=new QDockWidget;       //右边属性窗口
+    codeDockWidget=new QDockWidget(this);
+    const int dockWidgetCout=6;
+    ItemDockWidget *itemDockWidget[dockWidgetCout];
     for(int i=0;i<dockWidgetCout;++i)
     {
         itemDockWidget[i]=new ItemDockWidget;
         itemDockWidget[i]->setWindowTitle(TabsName.at(i).toLocal8Bit().constData());
         itemDockWidget[i]->setAllowedAreas(Qt::AllDockWidgetAreas);
+        itemDockWidget[i]->setAllowedAreas(Qt::TopDockWidgetArea|Qt::BottomDockWidgetArea);
         //this->addDockWidget(Qt::RightDockWidgetArea,ItemDockWidget[i]);
         //if(i!=0)
          //  this->tabifyDockWidget(ItemDockWidget[i-1],ItemDockWidget[i]);
-        hashDockWidget.insert(TabsName.at(i).toLocal8Bit().constData(),itemDockWidget[i]);
+        hashDockWidget.insert(TabsName.at(i).toLocal8Bit().constData(),itemDockWidget[i]);      //将dockwidget放到容器中
 
     }
-    hashDockWidget.squeeze();   //重新排序一下
+    //hashDockWidget.squeeze();   //重新排序一下
 
-    hashDockWidget.value(TabsName.at(0))->setWidget(tableWidget);
+    itemDockWidget[0]->setWidget(tableWidget);
     QTextEdit *textEdit=new QTextEdit;
-    hashDockWidget.value(TabsName.at(1))->setWidget(textEdit);
+    //itemDockWidget[1]->setWidget(textEdit);
 
-    classDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
+    //DockWidget属性设置
     classDockWidget->setWindowTitle(tr("ClassWindow"));
-
     classDockWidget->setWidget(toolBox);
+    classDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
     classDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
 
-    attribDockWidget->setWidget(tabWidget);
+    detailDockWidget->setWindowTitle("Details");
+    //this->addDockWidget(Qt::BottomDockWidgetArea,detailDockWidget);
+    detailDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
 
-    attribDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
+    codeDockWidget->setWidget(textEdit);
+    codeDockWidget->setWindowTitle("Code");
+    codeDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
+
+    attribDockWidget->setWidget(tabWidget);
     attribDockWidget->setWindowTitle("AttribWindow");
-    attribDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
+    //attribDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
+    //attribDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
 
     this->addDockWidget(Qt::LeftDockWidgetArea,classDockWidget);
-    this->splitDockWidget(classDockWidget,hashDockWidget.value(TabsName.at(0)), Qt::Horizontal);
-
+    this->splitDockWidget(classDockWidget,itemDockWidget[0], Qt::Horizontal);
+    this->splitDockWidget(itemDockWidget[0],attribDockWidget, Qt::Horizontal);   //从左到右分割dockWidget窗口
     this->splitDockWidget(classDockWidget,detailDockWidget,Qt::Vertical);
-    this->splitDockWidget(hashDockWidget.value(TabsName.at(0)),attribDockWidget, Qt::Horizontal);   //从左到右分割dockWidget窗口
-    this->splitDockWidget(hashDockWidget.value(TabsName.at(0)),hashDockWidget.value(TabsName.at(1)),Qt::Vertical);
-    this->tabifyDockWidget(itemDockWidget[1],itemDockWidget[2]);       //tabs标签方式摆放dockwidget窗口
-    itemDockWidget[1]->raise();         //提升dockwidget为顶部窗口槽
-
+    this->splitDockWidget(itemDockWidget[0],codeDockWidget,Qt::Vertical);
+    for(int i=0;i<dockWidgetCout;++i)
+    {
+        if(i<dockWidgetCout-1)
+            this->tabifyDockWidget(itemDockWidget[i],itemDockWidget[i+1]);       //tabs标签方式摆放dockwidget窗口
+    }
+    itemDockWidget[0]->raise();         //提升dockwidget为顶部窗口槽
     this->setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::North);        //第一个参数表示那里的dockwidgetArea窗口？第二个参数表示在那绘制
 
     connect(ui->actionExit,SIGNAL(triggered()),this,SLOT(close()));
@@ -104,6 +114,8 @@ MainWindow::~MainWindow()
 void MainWindow::setConnect()
 {
     connect(ui->actionFtpSeting,SIGNAL(triggered()),ftpseting,SLOT(exec()));
+    connect(ui->actionSocketServer,SIGNAL(triggered()),tcpServerDialog,SLOT(show()));
+    connect(ui->actionSocketClinet,SIGNAL(triggered()),tcpSocketDialog,SLOT(show()));
 }
 
 void MainWindow::createMainTools()

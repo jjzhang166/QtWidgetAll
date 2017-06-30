@@ -36,7 +36,9 @@ SOURCES += main.cpp\
     toolbox.cpp \
     treemodel.cpp \
     treeview.cpp \
-    treewidget.cpp
+    treewidget.cpp \
+    tcpsocketdialog.cpp \
+    tcpserverdialog.cpp
 
 HEADERS  += mainwindow.h \
     ftpseting.h \
@@ -50,11 +52,14 @@ HEADERS  += mainwindow.h \
     toolbox.h \
     tabwidget.h \
     qftp.h \
-    qurlinfo.h
+    qurlinfo.h \
+    tcpsocketdialog.h \
+    tcpserverdialog.h
 
 FORMS    += mainwindow.ui \
     ftpseting.ui \
-    tcpserver.ui
+    tcpsocketdialog.ui \
+    tcpserverdialog.ui
 
 RESOURCES += \
     qrc.qrc

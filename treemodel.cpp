@@ -1,4 +1,4 @@
-#include "treemodel.h"
+﻿#include "treemodel.h"
 #include <QVariant>
 #include <QBrush>
 #include <QFont>
@@ -65,9 +65,9 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
     case Qt::FontRole:{
         QFont font;
         if(index.internalId()>=N/2)
-            font.setPointSize(26);
+            font.setPointSize(16);
         else
-            font.setPointSize(20);
+            font.setPointSize(14);
         return font;}
     }
     return QVariant();
