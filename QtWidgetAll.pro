@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,19 +24,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
+    mainwindow.cpp \
+    framelayout.cpp \
     ftpseting.cpp \
+    Login.cpp \
+    qftp.cpp \
+    qurlinfo.cpp \
     tableview.cpp \
     tablewidget.cpp \
+    tabwidget.cpp \
+    toolbox.cpp \
     treemodel.cpp \
     treeview.cpp \
-    treewidget.cpp \
-    framelayout.cpp \
-    Login.cpp \
-    toolbox.cpp \
-    tabwidget.cpp \
-    qftp.cpp \
-    qurlinfo.cpp
+    treewidget.cpp
 
 HEADERS  += mainwindow.h \
     ftpseting.h \
@@ -58,3 +58,6 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += \
     qrc.qrc
+
+DISTFILES += \
+    readme.txt

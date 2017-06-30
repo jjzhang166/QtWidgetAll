@@ -55,7 +55,6 @@ TableWidget::TableWidget(int row, int column, QWidget *parent)
 {
     //表头
     headList<<tr(u8"选择")<<tr(u8"数字")<<tr(u8"文件名与图标")<<tr(u8"大小")<<tr(u8"进度")<<tr(u8"图片")<<tr(u8"下拉选项")<<tr(u8"修改日期");
-
     this->setWindowTitle("tableWidget sample");
     this->setRowCount(row);     //设置行
     this->setColumnCount(column);  //设置列

@@ -1,4 +1,4 @@
-﻿#ifndef TABLEWIDGET_H
+#ifndef TABLEWIDGET_H
 #define TABLEWIDGET_H
 #include <QTableWidget>
 #include <QList>

@@ -131,6 +131,7 @@
    </property>
   </action>
   <action name="actionSave">
+
    <property name="icon">
     <iconset resource="qrc.qrc">
      <normaloff>:/icon/PNG/32px/099-floppy-disk.png</normaloff>:/icon/PNG/32px/099-floppy-disk.png</iconset>

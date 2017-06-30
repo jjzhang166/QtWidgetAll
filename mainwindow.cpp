@@ -11,6 +11,7 @@
 #include "toolbox.h"
 #include "tabwidget.h"
 #include "qftp.h"
+#include "Login.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -27,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
         delete p;   //如takeCentralWidget存在就删除
     this->setWindowTitle(tr("QT 3k QWidget"));
     this->setDockNestingEnabled(true);  //使DockWidget窗可以放在mainWindow的中间
+
 
     //类的实例
     QFtp *ftp=new QFtp;
@@ -63,27 +65,32 @@ MainWindow::MainWindow(QWidget *parent) :
 
     }
     hashDockWidget.squeeze();   //重新排序一下
+
     hashDockWidget.value(TabsName.at(0))->setWidget(tableWidget);
     QTextEdit *textEdit=new QTextEdit;
     hashDockWidget.value(TabsName.at(1))->setWidget(textEdit);
 
     classDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
     classDockWidget->setWindowTitle(tr("ClassWindow"));
+
     classDockWidget->setWidget(toolBox);
     classDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
 
     attribDockWidget->setWidget(tabWidget);
+
     attribDockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
     attribDockWidget->setWindowTitle("AttribWindow");
     attribDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
 
     this->addDockWidget(Qt::LeftDockWidgetArea,classDockWidget);
     this->splitDockWidget(classDockWidget,hashDockWidget.value(TabsName.at(0)), Qt::Horizontal);
+
     this->splitDockWidget(classDockWidget,detailDockWidget,Qt::Vertical);
     this->splitDockWidget(hashDockWidget.value(TabsName.at(0)),attribDockWidget, Qt::Horizontal);   //从左到右分割dockWidget窗口
     this->splitDockWidget(hashDockWidget.value(TabsName.at(0)),hashDockWidget.value(TabsName.at(1)),Qt::Vertical);
     this->tabifyDockWidget(itemDockWidget[1],itemDockWidget[2]);       //tabs标签方式摆放dockwidget窗口
     itemDockWidget[1]->raise();         //提升dockwidget为顶部窗口槽
+
     this->setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::North);        //第一个参数表示那里的dockwidgetArea窗口？第二个参数表示在那绘制
 
     connect(ui->actionExit,SIGNAL(triggered()),this,SLOT(close()));
@@ -98,6 +105,7 @@ void MainWindow::setConnect()
 {
     connect(ui->actionFtpSeting,SIGNAL(triggered()),ftpseting,SLOT(exec()));
 }
+
 void MainWindow::createMainTools()
 {
     QWidget *mt_Widget=new QWidget;

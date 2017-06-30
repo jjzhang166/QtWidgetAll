@@ -4,13 +4,13 @@
 #include <QHash>
 #include <QMainWindow>
 #include <QDockWidget>
-#include <QtGui>
 #include <QComboBox>
-#include "Login.h"
 #include "ftpseting.h"
+#include "Login.h"
 namespace Ui {
 class MainWindow;
 }
+
 class ItemDockWidget;
 class AttribDockWidget;
 
@@ -55,6 +55,7 @@ public:
     virtual QSize sizeHint() const
     {
         return QSize(200,600);
+
     }
 };
 

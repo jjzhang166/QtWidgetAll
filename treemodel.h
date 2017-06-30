@@ -1,15 +1,17 @@
-﻿#ifndef TREEMODEL_H
+#ifndef TREEMODEL_H
 #define TREEMODEL_H
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QAbstractItemModel>
 #include <QTimer>
+
 class TreeModel : public QAbstractItemModel
 {
 public:
     TreeModel(QObject *parent=0);
     ~TreeModel();
+
     //行数和列数
     virtual int rowCount(const QModelIndex &parent) const;      //行数量
     virtual int columnCount(const QModelIndex &parent) const;   //列数量

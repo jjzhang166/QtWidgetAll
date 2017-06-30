@@ -1,4 +1,4 @@
-﻿#ifndef TREEVIEW_H
+#ifndef TREEVIEW_H
 #define TREEVIEW_H
 #include <QTreeView>
 #include "treemodel.h"

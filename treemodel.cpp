@@ -1,4 +1,4 @@
-﻿#include "treemodel.h"
+#include "treemodel.h"
 #include <QVariant>
 #include <QBrush>
 #include <QFont>

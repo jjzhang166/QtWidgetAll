@@ -1,4 +1,4 @@
-﻿#include "treewidget.h"
+#include "treewidget.h"
 #include <QHeaderView>
 TreeWidget::TreeWidget(QWidget *parent)
     :QTreeWidget(parent)
