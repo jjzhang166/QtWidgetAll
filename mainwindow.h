@@ -12,7 +12,7 @@ namespace Ui {
 class MainWindow;
 }
 class ItemDockWidget;
-class ClassDockWidget;
+class AttribDockWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -33,8 +33,8 @@ private:
     QComboBox *mt_ComboBox;
 
     QHash<QString,QDockWidget *> hashDockWidget;
-    ClassDockWidget *classDockWidget;
-    QDockWidget *attribDockWidget;
+    QDockWidget *classDockWidget;
+    AttribDockWidget *attribDockWidget;
     QDockWidget *detailDockWidget;
     ItemDockWidget *itemDockWidget[3];
 
@@ -49,12 +49,12 @@ public:
     }
 };
 //重载QDockwidget类设置初始化大小
-class ClassDockWidget : public QDockWidget
+class AttribDockWidget : public QDockWidget
 {
 public:
     virtual QSize sizeHint() const
     {
-        return QSize(150,600);
+        return QSize(200,600);
     }
 };
 

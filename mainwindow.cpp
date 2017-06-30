@@ -10,6 +10,7 @@
 #include "tablewidget.h"
 #include "toolbox.h"
 #include "tabwidget.h"
+#include "qftp.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -28,15 +29,15 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setDockNestingEnabled(true);  //使DockWidget窗可以放在mainWindow的中间
 
     //类的实例
+    QFtp *ftp=new QFtp;
     m_login=new Login;
     TabWidget *tabWidget=new TabWidget;
     ToolBox *toolBox=new ToolBox;
     TableWidget *tableWidget=new TableWidget(50,8);
-
     //dockWidget实例
-    classDockWidget=new ClassDockWidget;;        //左边类窗口
+    classDockWidget=new QDockWidget;;        //左边类窗口
     //classDockWidget->setFixedSize(220,600);
-    attribDockWidget=new QDockWidget;       //右边属性窗口
+    attribDockWidget=new AttribDockWidget;       //右边属性窗口
 
     //初始化的一些函数
     setConnect();

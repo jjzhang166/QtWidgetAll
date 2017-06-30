@@ -34,7 +34,9 @@ SOURCES += main.cpp\
     framelayout.cpp \
     Login.cpp \
     toolbox.cpp \
-    tabwidget.cpp
+    tabwidget.cpp \
+    qftp.cpp \
+    qurlinfo.cpp
 
 HEADERS  += mainwindow.h \
     ftpseting.h \
@@ -46,10 +48,13 @@ HEADERS  += mainwindow.h \
     framelayout.h \
     Login.h \
     toolbox.h \
-    tabwidget.h
+    tabwidget.h \
+    qftp.h \
+    qurlinfo.h
 
 FORMS    += mainwindow.ui \
-    ftpseting.ui
+    ftpseting.ui \
+    tcpserver.ui
 
 RESOURCES += \
     qrc.qrc

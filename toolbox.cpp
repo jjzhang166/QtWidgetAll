@@ -1,13 +1,17 @@
 ﻿#include "toolbox.h"
 #include "treewidget.h"
+#include "treeview.h"
+
 ToolBox::ToolBox(QWidget *parent)
     :QToolBox(parent)
 {
-    this->setObjectName("ToolBox");
+    //类的实列
     QWidget *widget=new QWidget();
     TreeWidget *treeWidget=new TreeWidget;
-    this->addItem(treeWidget,tr("Qt GUI Class"));
-    this->addItem(widget,tr("Qt Network Class"));
-    this->addItem(widget,tr("Qt Date Class"));
-
+    TreeView *treeView=new TreeView(this);
+    //初始设置
+    this->setObjectName("ToolBox");
+    this->addItem(treeView,tr("Qt"));
+    this->addItem(treeWidget,tr("C++"));
+    this->addItem(widget,tr("Qt Date Class"));   
 }

@@ -60,6 +60,8 @@
     <property name="title">
      <string>Tools</string>
     </property>
+    <addaction name="actionSocketServer"/>
+    <addaction name="actionSocketClinet"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -159,6 +161,16 @@
   <action name="actionFtpSeting">
    <property name="text">
     <string>FtpSeting</string>
+   </property>
+  </action>
+  <action name="actionSocketServer">
+   <property name="text">
+    <string>SocketServer</string>
+   </property>
+  </action>
+  <action name="actionSocketClinet">
+   <property name="text">
+    <string>SocketClinet</string>
    </property>
   </action>
  </widget>
