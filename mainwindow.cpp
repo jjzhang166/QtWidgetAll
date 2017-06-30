@@ -11,7 +11,8 @@
 #include "toolbox.h"
 #include "tabwidget.h"
 #include "qftp.h"
-
+#include "datecomponent.h"
+#include "charttab.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -20,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //加载窗口类的创建
     ftpseting=new FtpSeting(this);
     QStringList TabsName;
-    TabsName<<"TableWidget"<<"TableView"<<"sample3"<<"sample4"<<"sample5"<<"sample6";
+    TabsName<<"TableWidget"<<"TableView"<<"component"<<"Date"<<"Chart"<<"Plug";
     ui->mainToolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);       //设置工具栏显示文字和图标
     //删除主窗口中的所有窗口，全部使用DockWidget类
     QWidget* p=this->takeCentralWidget();
@@ -33,11 +34,13 @@ MainWindow::MainWindow(QWidget *parent) :
     //类的实例
     QFtp *ftp=new QFtp;
     m_login=new Login;
+    ChartTab *charTab=new ChartTab(this);
+    DateComponent *dateComponent=new DateComponent(this);
     tcpServerDialog=new TcpServerDialog(this);
     tcpSocketDialog=new TcpSocketDialog(this);
     TabWidget *tabWidget=new TabWidget;
     ToolBox *toolBox=new ToolBox;
-    TableWidget *tableWidget=new TableWidget(50,8);
+    TableWidget *tableWidget=new TableWidget(20,8);
 
     //初始化的一些函数
     setConnect();
@@ -102,6 +105,9 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     itemDockWidget[0]->raise();         //提升dockwidget为顶部窗口槽
     this->setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::North);        //第一个参数表示那里的dockwidgetArea窗口？第二个参数表示在那绘制
+    //dockwidget数组面板设置
+    itemDockWidget[3]->setWidget(dateComponent);
+    itemDockWidget[4]->setWidget(charTab);
 
     connect(ui->actionExit,SIGNAL(triggered()),this,SLOT(close()));
 }

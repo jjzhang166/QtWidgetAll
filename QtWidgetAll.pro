@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui network
+QT += widgets core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -38,7 +38,9 @@ SOURCES += main.cpp\
     treeview.cpp \
     treewidget.cpp \
     tcpsocketdialog.cpp \
-    tcpserverdialog.cpp
+    tcpserverdialog.cpp \
+    datecomponent.cpp \
+    charttab.cpp
 
 HEADERS  += mainwindow.h \
     ftpseting.h \
@@ -54,7 +56,9 @@ HEADERS  += mainwindow.h \
     qftp.h \
     qurlinfo.h \
     tcpsocketdialog.h \
-    tcpserverdialog.h
+    tcpserverdialog.h \
+    datecomponent.h \
+    charttab.h
 
 FORMS    += mainwindow.ui \
     ftpseting.ui \

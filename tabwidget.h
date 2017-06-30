@@ -8,7 +8,7 @@ public:
     TabWidget(QWidget *parent=0);
     virtual QSize sizeHint() const
     {
-        return QSize(220,600);
+        return QSize(200,600);
     }
 };
 
